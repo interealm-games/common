@@ -18,6 +18,14 @@ class DictionaryTools
 		return map;
 	}//*/
 	
+	static public function size<K, V>(map:Map<K, V>):Int {
+		var size:Int = 0;
+		for (value in map) {
+			size++;
+		}
+		return size;
+	}
+	
 	static public function toArray<K, V>(map:Map<K, V>):Array<V> {
 		var arr:Array<V> = [];
 		for (value in map) {
