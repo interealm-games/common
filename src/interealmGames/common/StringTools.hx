@@ -28,4 +28,40 @@ class StringTools extends Parent
 	static public function capitalizeAll(str:String, delimiter:String = " "):String {
 		return str.split(delimiter).map(StringTools.capitalize).join(delimiter);
 	}
+	
+	/**
+	 * Replaces each instance of a 
+	 * @param	str
+	 * @param	replacements
+	 * @param	placeholder = "%s
+	 */
+	static public function format(str:String, replacements:Array<String>, placeholder = "%s") {
+		var newString = str;
+		
+		for (replacement in replacements) {
+			newString = StringTools.replaceOnce(newString, placeholder, replacement);
+		}
+		
+		return newString;
+	}
+	
+	/**
+	 * Replaces a single occurence (first from left) of a substring with another.
+	 * Creates new string, ie. not in place.
+	 * @param	str 
+	 * @param	sub
+	 * @param	by
+	 * @return
+	 */
+	static public function replaceOnce(str:String, sub:String, by:String):String {
+		var subPosition = str.indexOf(sub);
+		
+		if (subPosition == -1) {
+			return str;
+		}
+		
+		var beginning = str.substring(0, subPosition);
+		var end = str.substring(subPosition + sub.length);
+		return beginning + by + end;
+	}
 }

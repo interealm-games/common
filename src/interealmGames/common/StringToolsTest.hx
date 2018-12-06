@@ -3,9 +3,20 @@ package interealmGames.common;
 import haxe.unit.TestCase;
 import interealmGames.common.test.Test;
 
+typedef FormatTest = {
+	var str: String;
+	var placeholder: String;
+	var replacements: Array<String>;
+	var expected: String;
+};
+typedef ReplacementTest = {
+	var str: String;
+	var sub: String;
+	var by: String;
+	var expected: String;
+};
 /**
  * Test Suite for StringTools
- * @author dmcblue
  */
 class StringToolsTest extends TestCase 
 {
@@ -36,7 +47,7 @@ class StringToolsTest extends TestCase
 		}];
 		
 		for(test in tests) {
-			assertEquals(StringTools.capitalize(test.input), test.expected);
+			assertEquals(test.expected, StringTools.capitalize(test.input));
 		}
 	}
 	
@@ -66,11 +77,65 @@ class StringToolsTest extends TestCase
 		}];
 		
 		for(test in tests) {
-			assertEquals(StringTools.capitalizeAll(test.input), test.expected);
+			assertEquals(test.expected, StringTools.capitalizeAll(test.input));
 		}
 		assertEquals(
-			StringTools.capitalizeAll("allbeesarebeeutiful", "b"), 
-			"AllbEesarebEeutiful"
+			"AllbEesarebEeutiful",
+			StringTools.capitalizeAll("allbeesarebeeutiful", "b")
 		);
+	}
+	
+	public function testFormat()
+	{
+		var tests:Array<FormatTest> = [{
+			str: "Sara %s mangos",
+			placeholder: "%s",
+			replacements: ["likes"],
+			expected: "Sara likes mangos"
+		},{
+			str: "Sara mangos",
+			placeholder: "%s",
+			replacements: ["likes"],
+			expected: "Sara mangos"
+		},{
+			str: "Sara %d mangos %d",
+			placeholder: "%d",
+			replacements: ["likes"],
+			expected: "Sara likes mangos %d"
+		},{
+			str: "Sara %d mangos %d.",
+			placeholder: "%d",
+			replacements: ["likes","a lot"],
+			expected: "Sara likes mangos a lot."
+		}];
+	
+		for(test in tests) {
+			assertEquals(
+				test.expected,
+				StringTools.format(test.str, test.replacements, test.placeholder)
+			);
+		}
+	}
+	
+	public function testReplaceOnce()
+	{
+		var tests:Array<ReplacementTest> = [{
+			str: "Sara %s mangos",
+			sub: "%s",
+			by: "likes",
+			expected: "Sara likes mangos"
+		},{
+			str: "Sara mangos",
+			sub: "%s",
+			by: "likes",
+			expected: "Sara mangos"
+		}];
+		
+		for(test in tests) {
+			assertEquals(
+				test.expected,
+				StringTools.replaceOnce(test.str, test.sub, test.by)
+			);
+		}
 	}
 }
