@@ -13,6 +13,7 @@ class Main
 	{
 		var r:TestRunner = new TestRunner();
 		r.add(new StringToolsTest());
+		r.add(new ArrayToolsTest());
 
 		r.run();
 	}
