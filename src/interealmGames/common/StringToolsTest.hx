@@ -3,6 +3,7 @@ package interealmGames.common;
 import haxe.unit.TestCase;
 import interealmGames.common.test.Test;
 
+
 typedef FormatTest = {
 	var str: String;
 	var placeholder: String;
@@ -15,6 +16,18 @@ typedef ReplacementTest = {
 	var by: String;
 	var expected: String;
 };
+typedef SpliceTest = {
+	var subject: String;
+	var start: Int;
+	var length: Int;
+	var replacement: String;
+	var expected: String;
+};
+typedef UnquoteTest = {
+	input:String,
+	quotes:Null<Array<String>>,
+	expected:String
+}
 /**
  * Test Suite for StringTools
  */
@@ -136,6 +149,54 @@ class StringToolsTest extends TestCase
 				test.expected,
 				StringTools.replaceOnce(test.str, test.sub, test.by)
 			);
+		}
+	}
+	
+	/**
+	 * Basic tests for capitalization
+	 */
+	public function testSplice()
+	{
+		var tests:Array<SpliceTest> = [{
+			subject: "billy",
+			start: 1,
+			length: 1,
+			replacement: "", //default
+			expected: "blly"
+		},{
+			subject: "billy",
+			start: 1,
+			length: 3,
+			replacement: "obb", //default
+			expected: "bobby"
+		}];
+		
+		for(test in tests) {
+			assertEquals(test.expected, StringTools.splice(test.subject, test.start, test.length, test.replacement));
+		}
+	}
+	
+	/**
+	 * Basic tests for capitalization
+	 */
+	public function testUnquote()
+	{
+		var tests:Array<UnquoteTest> = [{
+			input: "billy",
+			quotes: null, //default
+			expected: "billy"
+		},{
+			input: "'billy'",
+			quotes: null, //default
+			expected: "billy"
+		},{
+			input: '"billy"',
+			quotes: ['"', "'"],
+			expected: "billy"
+		}];
+		
+		for(test in tests) {
+			assertEquals(test.expected, StringTools.unquote(test.input, test.quotes));
 		}
 	}
 }

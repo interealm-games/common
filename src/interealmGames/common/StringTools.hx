@@ -64,4 +64,43 @@ class StringTools extends Parent
 		var end = str.substring(subPosition + sub.length);
 		return beginning + by + end;
 	}
+	
+	/**
+	 * Splices in a new part of the string, potentially replacing an old part
+	 * @param subject String The string to splice
+	 * @param start Int starting position of the splice
+	 * @param length Int Length of characters to remove, default 0.
+	 * @param replacement String Optional what to put in the removed area.
+	 */
+	static public function splice(subject:String, start:Int, length = 0, replacement = '') {
+		return subject.substr(0, start) + replacement + subject.substr(start + length);
+	}
+	
+	/**
+	 * Returns a new string without surrounding quotations
+	 * @param	string The string to remove quotes from
+	 * @param	quotes Array of quote types, defaults to single quote
+	 * @return  string A new string without the quotes
+	 */
+	static public function unquote(string:String, ?quotes:Array<String>):String {
+		if (quotes == null) {
+			quotes = ["'"];
+		}
+		
+		var output = string;
+		for (quote in quotes) {
+			if (output.length > 1) {
+				var firstIndex = output.indexOf(quote);
+				if (output.charAt(output.length - firstIndex - 1) == quote) {
+					
+				}
+			}
+			
+			if (output.length > 1 && output.charAt(0) == quote && output.charAt(output.length - 1) == quote) {
+				output = output.substr(1, output.length - 2);
+			}
+		}
+		
+		return output;
+	}
 }
