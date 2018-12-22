@@ -1,7 +1,8 @@
 package interealmGames.common;
 
+using interealmGames.common.StringToolsExtension;
+
 import Map in Dictionary;
-import interealmGames.common.StringTools in StringToolsExt;
 /**
  * ...
  * @author ...
@@ -80,7 +81,7 @@ class CommandLine
 				}
 				
 				if (secondArgument != null) {
-					options.get(argument).push(StringToolsExt.unquote(secondArgument));
+					options.get(argument).push(StringTools.unquote(secondArgument));
 				}
 			}
 			

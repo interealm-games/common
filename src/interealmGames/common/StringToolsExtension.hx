@@ -1,12 +1,14 @@
 package interealmGames.common;
 
+using interealmGames.common.StringToolsExtension;
+
 import StringTools in Parent;
 
 /**
  * Extends the Standard StringTools
  * @author dmcblue
  */
-class StringTools extends Parent 
+class StringToolsExtension 
 {
 	/**
 	 * Takes a string and returns a string with the first character in upper case
@@ -14,7 +16,7 @@ class StringTools extends Parent
 	 * @param	str The string to capitalize
 	 * @return The capitalized string
 	 */
-	static public function capitalize(str:String):String {
+	static public function capitalize(cl:Class<Parent>, str:String):String {
 		return str.charAt(0).toUpperCase() + str.substr(1);
 	}
 
@@ -25,8 +27,8 @@ class StringTools extends Parent
 	 * @param	delimiter The delimiter to split the string
 	 * @return The capitalized string
 	 */
-	static public function capitalizeAll(str:String, delimiter:String = " "):String {
-		return str.split(delimiter).map(StringTools.capitalize).join(delimiter);
+	static public function capitalizeAll(cl:Class<Parent>, str:String, delimiter:String = " "):String {
+		return str.split(delimiter).map(Parent.capitalize).join(delimiter);
 	}
 	
 	/**
@@ -35,11 +37,11 @@ class StringTools extends Parent
 	 * @param	replacements
 	 * @param	placeholder = "%s
 	 */
-	static public function format(str:String, replacements:Array<String>, placeholder = "%s") {
+	static public function format(cl:Class<Parent>, str:String, replacements:Array<String>, placeholder = "%s") {
 		var newString = str;
 		
 		for (replacement in replacements) {
-			newString = StringTools.replaceOnce(newString, placeholder, replacement);
+			newString = Parent.replaceOnce(newString, placeholder, replacement);
 		}
 		
 		return newString;
@@ -53,7 +55,7 @@ class StringTools extends Parent
 	 * @param	by
 	 * @return
 	 */
-	static public function replaceOnce(str:String, sub:String, by:String):String {
+	static public function replaceOnce(cl:Class<Parent>, str:String, sub:String, by:String):String {
 		var subPosition = str.indexOf(sub);
 		
 		if (subPosition == -1) {
@@ -72,7 +74,7 @@ class StringTools extends Parent
 	 * @param length Int Length of characters to remove, default 0.
 	 * @param replacement String Optional what to put in the removed area.
 	 */
-	static public function splice(subject:String, start:Int, length = 0, replacement = '') {
+	static public function splice(cl:Class<Parent>, subject:String, start:Int, length = 0, replacement = '') {
 		return subject.substr(0, start) + replacement + subject.substr(start + length);
 	}
 	
@@ -82,7 +84,7 @@ class StringTools extends Parent
 	 * @param	quotes Array of quote types, defaults to single quote
 	 * @return  string A new string without the quotes
 	 */
-	static public function unquote(string:String, ?quotes:Array<String>):String {
+	static public function unquote(cl:Class<Parent>, string:String, ?quotes:Array<String>):String {
 		if (quotes == null) {
 			quotes = ["'", '"'];
 		}

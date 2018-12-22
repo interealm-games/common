@@ -15,6 +15,7 @@ class Test
 		r.add(new StringToolsTest());
 		r.add(new ArrayToolsTest());
 		r.add(new CommandLineTest());
+		r.add(new CommandLineTest());
 
 		r.run();
 	}

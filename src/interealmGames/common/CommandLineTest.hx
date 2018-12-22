@@ -56,7 +56,7 @@ class CommandLineTest extends TestCase
 		assertTrue(actual.exists('f'));
 		assertEquals(1, actual.get('f').length);
 		assertEquals('filename.txt', actual.get('f')[0]);
-		trace(actual);
+		
 		assertTrue(actual.exists('d'));
 		assertEquals(2, actual.get('d').length);
 		assertEquals('tests/unit', actual.get('d')[0]);

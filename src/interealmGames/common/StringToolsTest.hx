@@ -1,5 +1,7 @@
 package interealmGames.common;
 
+using interealmGames.common.StringToolsExtension;
+
 import haxe.unit.TestCase;
 import interealmGames.common.test.Test;
 
