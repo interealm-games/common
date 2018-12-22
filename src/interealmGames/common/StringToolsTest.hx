@@ -153,7 +153,7 @@ class StringToolsTest extends TestCase
 	}
 	
 	/**
-	 * Basic tests for capitalization
+	 * Basic tests for splicing strings
 	 */
 	public function testSplice()
 	{
@@ -177,7 +177,7 @@ class StringToolsTest extends TestCase
 	}
 	
 	/**
-	 * Basic tests for capitalization
+	 * Basic tests for unquote
 	 */
 	public function testUnquote()
 	{

@@ -84,7 +84,7 @@ class StringTools extends Parent
 	 */
 	static public function unquote(string:String, ?quotes:Array<String>):String {
 		if (quotes == null) {
-			quotes = ["'"];
+			quotes = ["'", '"'];
 		}
 		
 		var output = string;
