@@ -1,20 +1,19 @@
-package interealmGames.common;
+package interealmGames.common.commandLine;
 
 import haxe.unit.TestCase;
-import interealmGames.common.CommandLine;
+import interealmGames.common.commandLine.CommandLine;
 
 typedef GetArgumentsText = {
 	input:String,
 	expected:Array<String>
 }
 /**
- * ...
- * @author ...
+ * Tests the CommandLine class
  */
 class CommandLineTest extends TestCase 
 {
 	/**
-	 * Basic tests for unquote
+	 * Basic tests for getArguments
 	 */
 	public function testGetArguments()
 	{
@@ -44,26 +43,26 @@ class CommandLineTest extends TestCase
 	}
 	
 	/**
-	 * Basic tests for unquote
+	 * Basic tests for getOptions
 	 */
 	public function testGetOptions()
 	{
 		var command = "program -r -f filename.txt valve.mp3 -d=\"tests/unit\" -d lib --input 'audio' output.wav";
 		var actual = CommandLine.getOptions(command);
-		assertTrue(actual.exists('r'));
-		assertEquals(0, actual.get('r').length);
+		assertTrue(actual.hasShortOption('r'));
+		assertEquals(0, actual.getShortValues('r').length);
 		
-		assertTrue(actual.exists('f'));
-		assertEquals(1, actual.get('f').length);
-		assertEquals('filename.txt', actual.get('f')[0]);
+		assertTrue(actual.hasShortOption('f'));
+		assertEquals(1, actual.getShortValues('f').length);
+		assertEquals('filename.txt', actual.getShortValues('f')[0]);
 		
-		assertTrue(actual.exists('d'));
-		assertEquals(2, actual.get('d').length);
-		assertEquals('tests/unit', actual.get('d')[0]);
-		assertEquals('lib', actual.get('d')[1]);
+		assertTrue(actual.hasShortOption('d'));
+		assertEquals(2, actual.getShortValues('d').length);
+		assertEquals('tests/unit', actual.getShortValues('d')[0]);
+		assertEquals('lib', actual.getShortValues('d')[1]);
 		
-		assertTrue(actual.exists('input'));
-		assertEquals(1, actual.get('input').length);
-		assertEquals('audio', actual.get('input')[0]);
+		assertTrue(actual.hasLongOption('input'));
+		assertEquals(1, actual.getLongValues('input').length);
+		assertEquals('audio', actual.getLongValues('input')[0]);
 	}
 }

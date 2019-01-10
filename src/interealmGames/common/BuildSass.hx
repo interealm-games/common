@@ -1,7 +1,7 @@
 package interealmGames.common;
 
-import interealmGames.common.fileSystem.FileSystem;
-import interealmGames.common.CommandLine;
+import interealmGames.common.fileSystem.FileSystemExtension;
+import interealmGames.common.commandLine.CommandLine;
 
 /**
  * ...
@@ -14,7 +14,7 @@ class BuildSass
 		
 		trace(options);
 		
-		var paths = FileSystem.recursiveLoop("C:/www/interealm-games/editor-frontend/browser/src/interealmGames/browser/components", "scss");
+		var paths = FileSystemExtension.recursiveLoop("C:/www/interealm-games/editor-frontend/browser/src/interealmGames/browser/components", "scss");
 		for (path in paths) {
 			trace(path);
 		}

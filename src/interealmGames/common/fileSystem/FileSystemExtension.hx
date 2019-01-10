@@ -1,14 +1,16 @@
 package interealmGames.common.fileSystem;
 
+using interealmGames.common.fileSystem.FileSystemExtension;
+
 import sys.FileSystem as Parent;
 import haxe.io.Path;
 /**
  * ...
  * @author ...
  */
-class FileSystem extends Parent
+class FileSystemExtension
 {
-	static public function recursiveLoop(directory:String, extension:String):Array<String> {
+	static public function recursiveLoop(cl:Class<Parent>, directory:String, extension:String):Array<String> {
 		var paths:Array<String> = [];
 		if (sys.FileSystem.exists(directory)) {
 			//trace("directory found: " + directory);
@@ -27,7 +29,7 @@ class FileSystem extends Parent
 				} else {
 					var directory = haxe.io.Path.addTrailingSlash(path);
 					//trace("directory found: " + directory);
-					paths = paths.concat(recursiveLoop(directory, extension));
+					paths = paths.concat(Parent.recursiveLoop(directory, extension));
 				}
 			}
 		} else {

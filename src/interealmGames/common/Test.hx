@@ -1,6 +1,8 @@
 package interealmGames.common;
 
 import haxe.unit.TestRunner;
+import interealmGames.common.commandLine.CommandLineTest;
+import interealmGames.common.commandLine.OptionSetTest;
 
 /**
  * ...
@@ -15,7 +17,7 @@ class Test
 		r.add(new StringToolsTest());
 		r.add(new ArrayToolsTest());
 		r.add(new CommandLineTest());
-		r.add(new CommandLineTest());
+		r.add(new OptionSetTest());
 
 		r.run();
 	}
