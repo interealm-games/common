@@ -2,13 +2,10 @@ package interealmGames.common.commandLine;
 
 using interealmGames.common.StringToolsExtension;
 
-import Map in Dictionary;
-import interealmGames.common.commandLine.OptionType;
 import interealmGames.common.commandLine.OptionSet;
 
 /**
- * ...
- * @author ...
+ * Convenience functions to deal with command line usage
  */
 class CommandLine 
 {

@@ -3,6 +3,7 @@ import Type;
 import StringTools;
 
 /**
+ * INCOMPLETE
  * Convenience for checking API responses for correctness so proper errors can be thrown instead of silent failure (JS)
  */
 class ObjectValidator 
@@ -31,10 +32,6 @@ class ObjectValidator
 		} else if (!Std.is(Reflect.field(obj, property), String)) {
 			throw ObjectValidator.formWrongPropertyType(obj, property, String);
 		} else if (requirement == Requirement.NON_EMPTY && StringTools.trim(Reflect.field(obj, property)) == "") {
-			trace('jere');
-			trace(property);
-			trace(Reflect.field(obj, property));
-			trace(ObjectValidator.formErrorEmptyValue(obj, property));
 			var error = ObjectValidator.formErrorEmptyValue(obj, property);
 			throw error;
 			throw 'someothererrror';

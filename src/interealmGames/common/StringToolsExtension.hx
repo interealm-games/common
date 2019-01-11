@@ -1,12 +1,11 @@
 package interealmGames.common;
 
-using interealmGames.common.StringToolsExtension;
+using interealmGames.common.StringToolsExtension; //self reference
 
 import StringTools in Parent;
 
 /**
  * Extends the Standard StringTools
- * @author dmcblue
  */
 class StringToolsExtension 
 {

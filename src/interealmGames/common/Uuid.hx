@@ -4,7 +4,7 @@ import com.hurlant.crypto.prng.Random;
 import com.hurlant.crypto.extra.UUID;
 
 /**
- * Uiid 
+ * Uuid Wrapper
  */
 class Uuid 
 {

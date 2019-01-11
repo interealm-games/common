@@ -1,16 +1,23 @@
 package interealmGames.common.fileSystem;
 
-using interealmGames.common.fileSystem.FileSystemExtension;
+using interealmGames.common.fileSystem.FileSystemExtension; // self reference
 
 import sys.FileSystem as Parent;
 import haxe.io.Path;
 /**
- * ...
- * @author ...
+ * Additional Utilities for sys.FileSystem
+ * https://code.haxe.org/category/other/adding-static-methods-to-existing-classes.html
  */
 class FileSystemExtension
 {
-	static public function recursiveLoop(cl:Class<Parent>, directory:String, extension:String):Array<String> {
+	/**
+	 * Recusively searches a folder for all files with a specific extension
+	 * @param	cl Not used in call
+	 * @param	directory Path to the search directory
+	 * @param	extension The extension to search for, currently case-sensitive
+	 * @return Array of all matching file paths
+	 */
+	static public function recursiveSearch(cl:Class<Parent>, directory:String, extension:String):Array<String> {
 		var paths:Array<String> = [];
 		if (sys.FileSystem.exists(directory)) {
 			//trace("directory found: " + directory);
@@ -20,20 +27,13 @@ class FileSystemExtension
 				if (!sys.FileSystem.isDirectory(path)) {
 					var pathInfo = new Path(path);
 					if (pathInfo.ext == extension) {
-						//trace("file found: " + path);
 						paths.push(path);
 					}
-					//trace("file found: " + path);
-					//trace("extension: " + pathInfo.ext);
-					// do something with file
 				} else {
 					var directory = haxe.io.Path.addTrailingSlash(path);
-					//trace("directory found: " + directory);
-					paths = paths.concat(Parent.recursiveLoop(directory, extension));
+					paths = paths.concat(Parent.recursiveSearch(directory, extension));
 				}
 			}
-		} else {
-			//trace('"$directory" does not exists');
 		}
 		
 		return paths;

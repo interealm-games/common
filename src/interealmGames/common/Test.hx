@@ -5,8 +5,7 @@ import interealmGames.common.commandLine.CommandLineTest;
 import interealmGames.common.commandLine.OptionSetTest;
 
 /**
- * ...
- * @author ...
+ * All tests for this package
  */
 class Test 
 {

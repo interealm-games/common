@@ -1,7 +1,7 @@
 package interealmGames.common.commandLine;
 
 /**
- * @author dmcblue
+ * Determines whether a command line option is long ('--version') or short ('-v')
  */
 enum OptionType 
 {

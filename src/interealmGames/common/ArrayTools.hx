@@ -31,15 +31,7 @@ class ArrayTools
 	static public function isSubset<T>(set:Array<T>, subset:Array<T>):Bool {
 		var dictionary:Dictionary<String, Int> = new Dictionary();
 		
-		/*
-		Length shouldn't matter since a set/array could have duplicate values
-		if (set.length < subset.length) {
-			return false;
-		}
-		//*/
-		
 		for (item in set) {
-			//trace();
 			dictionary.set(Std.string(item), 0);
 		}
 		
@@ -50,14 +42,6 @@ class ArrayTools
 			var i = dictionary.get(Std.string(item));
 			dictionary.set(Std.string(item), i + 1);
 		}
-		
-		/*
-		for (item in dictionary) {
-			if (item > 1) {
-				return false;
-			}
-		}
-		//*/
 		
 		return true;
 	}
