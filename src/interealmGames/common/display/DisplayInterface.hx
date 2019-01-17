@@ -24,12 +24,27 @@ interface DisplayInterface<Element, Event>
 	public function addProperty(elementSelector:String, propertyName:String, value:Any, overwrite:Bool = false):Void;
 	
 	/**
+	 * Updates the display with current data
+	 */
+	public function display():Void;
+	
+	/**
 	 * Called to load display in view after this object has been constructed.
-	 * Loads values to element properties.
-	 * Loads handlers to element events.
-	 * Calls custom onLoad function if defined.
+	 * Triggers Load Cycle.
+	 * Load Cycle:
+	 *  - Loads values to element properties.
+	 *  - Loads handlers to element events.
+	 *  - Calls onLoad function.
+	 *  - Calls onLoadInstance function if defined.
+	 * #load() can only be called once per instance.
 	 */
 	public function load():Void;
+	
+	/**
+	 * 
+	 * @param	root
+	 */
+	public function onLoad(root:Element):Void;
 	
 	/**
 	 * Sets the definition for the element property values.
@@ -49,5 +64,5 @@ interface DisplayInterface<Element, Event>
 	 * Sets a custom functon to be executed immediately after the display has
 	 * been loaded.
 	 */
-	public function setOnLoad(onLoad:Element -> Void):Void;
+	public function setOnLoadInstance(onLoad:Element -> Void):Void;
 }

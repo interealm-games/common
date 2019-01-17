@@ -18,6 +18,20 @@ class DictionaryTools
 		return map;
 	}//*/
 	
+	/**
+	 * Whether there are any items in this Map
+	 */
+	static public function isEmpty<K, V>(map:Map<K, V>):Bool {
+		for (value in map) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Returns the number of items in this Map
+	 */
 	static public function size<K, V>(map:Map<K, V>):Int {
 		var size:Int = 0;
 		for (value in map) {
@@ -26,6 +40,9 @@ class DictionaryTools
 		return size;
 	}
 	
+	/**
+	 * Gets all values from this Map
+	 */
 	static public function toArray<K, V>(map:Map<K, V>):Array<V> {
 		var arr:Array<V> = [];
 		for (value in map) {
