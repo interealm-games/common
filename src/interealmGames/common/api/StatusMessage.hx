@@ -5,7 +5,7 @@ package interealmGames.common.api;
  */
 typedef StatusMessage =
 {
-	var status:Bool;
-	var message:String;
-	var overwrite:Bool;
+	status:Bool,
+	message:String,
+	?overwrite:Bool
 }
