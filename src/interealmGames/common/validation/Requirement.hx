@@ -6,7 +6,7 @@ package interealmGames.common.validation;
 enum Requirement 
 {
 	NOT_REQUIRED;
-	DEFAULT;
+	DEFAULT_STRING(defaultValue:String);
 	NON_EMPTY;
 	REQUIRED;
 }

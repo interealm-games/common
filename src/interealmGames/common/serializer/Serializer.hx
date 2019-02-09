@@ -3,8 +3,8 @@ package interealmGames.common.serializer;
 /**
  * ...
  */
-interface Serializer<T> 
+interface Serializer 
 {
-	public function decode(s:String):T;
-	public function encode(t:T):String;
+	public function decode(s:String):Dynamic;
+	public function encode(t:Dynamic):String;
 }

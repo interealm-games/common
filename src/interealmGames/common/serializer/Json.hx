@@ -3,26 +3,21 @@ package interealmGames.common.serializer;
 import haxe.Json as JSON;
 /**
  * ...
- * @author dmcblue
  */
-class Json<T> implements Serializer<T> 
+class Json implements Serializer
 {
 
-	public function new() 
-	{
-		
-	}
+	public function new() {}
 	
 	
 	/* INTERFACE interealmGames.editorBackend.serializer.Serializer.Serializer<T> */
 	
-	public function decode(s:String):T 
+	public function decode(s:String):Dynamic 
 	{
-		var item:T = cast JSON.parse(s);
-		return item;
+		return JSON.parse(s);
 	}
 	
-	public function encode(t:T):String 
+	public function encode(t:Dynamic):String 
 	{
 		return JSON.stringify(t);
 	}
