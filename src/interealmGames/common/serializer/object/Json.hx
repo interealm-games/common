@@ -13,12 +13,12 @@ class Json<T> implements Serializer<T>
 	
 	public function decode(s:String):T 
 	{
-		var item:T = cast JSON.parse(s);
+		var item:T = cast haxe.Json.parse(s);
 		return item;
 	}
 	
 	public function encode(t:T):String 
 	{
-		return JSON.stringify(t);
+		return haxe.Json.stringify(t);
 	}
 }
