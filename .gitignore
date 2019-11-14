@@ -1,3 +1,8 @@
-
+# Generated code
 bin/*
 !/bin/index.html
+
+# Task Runners
+/opentask.exe
+/opentask
+!*/opentask*
