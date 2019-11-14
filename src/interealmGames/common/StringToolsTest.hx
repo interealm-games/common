@@ -2,8 +2,11 @@ package interealmGames.common;
 
 using interealmGames.common.StringToolsExtension;
 
-import haxe.unit.TestCase;
-import interealmGames.common.test.Test;
+
+import utest.Assert;
+import utest.Async;
+import utest.Test;
+import interealmGames.common.test.TestCase;
 
 
 typedef FormatTest = {
@@ -33,7 +36,7 @@ typedef UnquoteTest = {
 /**
  * Test Suite for StringTools
  */
-class StringToolsTest extends TestCase 
+class StringToolsTest extends Test 
 {
 
 	/**
@@ -41,7 +44,7 @@ class StringToolsTest extends TestCase
 	 */
 	public function testCapitalize()
 	{
-		var tests:Array<Test<String, String>> = [{
+		var tests:Array<TestCase<String, String>> = [{
 			input: "a",
 			expected: "A",
 		},{
@@ -62,7 +65,7 @@ class StringToolsTest extends TestCase
 		}];
 		
 		for(test in tests) {
-			assertEquals(test.expected, StringTools.capitalize(test.input));
+			Assert.equals(test.expected, StringTools.capitalize(test.input));
 		}
 	}
 	
@@ -71,7 +74,7 @@ class StringToolsTest extends TestCase
 	 */
 	public function testCapitalizeAll()
 	{
-		var tests:Array<Test<String, String>> = [{
+		var tests:Array<TestCase<String, String>> = [{
 			input: "a",
 			expected: "A",
 		},{
@@ -92,9 +95,9 @@ class StringToolsTest extends TestCase
 		}];
 		
 		for(test in tests) {
-			assertEquals(test.expected, StringTools.capitalizeAll(test.input));
+			Assert.equals(test.expected, StringTools.capitalizeAll(test.input));
 		}
-		assertEquals(
+		Assert.equals(
 			"AllbEesarebEeutiful",
 			StringTools.capitalizeAll("allbeesarebeeutiful", "b")
 		);
@@ -125,7 +128,7 @@ class StringToolsTest extends TestCase
 		}];
 	
 		for(test in tests) {
-			assertEquals(
+			Assert.equals(
 				test.expected,
 				StringTools.format(test.str, test.replacements, test.placeholder)
 			);
@@ -147,7 +150,7 @@ class StringToolsTest extends TestCase
 		}];
 		
 		for(test in tests) {
-			assertEquals(
+			Assert.equals(
 				test.expected,
 				StringTools.replaceOnce(test.str, test.sub, test.by)
 			);
@@ -174,7 +177,7 @@ class StringToolsTest extends TestCase
 		}];
 		
 		for(test in tests) {
-			assertEquals(test.expected, StringTools.splice(test.subject, test.start, test.length, test.replacement));
+			Assert.equals(test.expected, StringTools.splice(test.subject, test.start, test.length, test.replacement));
 		}
 	}
 	
@@ -198,7 +201,7 @@ class StringToolsTest extends TestCase
 		}];
 		
 		for(test in tests) {
-			assertEquals(test.expected, StringTools.unquote(test.input, test.quotes));
+			Assert.equals(test.expected, StringTools.unquote(test.input, test.quotes));
 		}
 	}
 }

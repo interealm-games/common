@@ -1,6 +1,8 @@
 package interealmGames.common;
 
-import haxe.unit.TestCase;
+import utest.Assert;
+import utest.Async;
+import utest.Test;
 
 typedef SubsetTest<T> = {
 	var set: Array<T>;
@@ -10,7 +12,7 @@ typedef SubsetTest<T> = {
 /**
  * Test Suite for StringTools
  */
-class ArrayToolsTest extends TestCase 
+class ArrayToolsTest extends Test 
 {
 
 	/**
@@ -45,7 +47,7 @@ class ArrayToolsTest extends TestCase
 		}];
 		
 		for(test in tests) {
-			assertEquals(test.expected, ArrayTools.isSubset(test.set, test.subset));
+			Assert.equals(test.expected, ArrayTools.isSubset(test.set, test.subset));
 		}
 	}
 }

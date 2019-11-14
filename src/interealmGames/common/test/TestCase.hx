@@ -3,7 +3,7 @@ package interealmGames.common.test;
 /**
  * @author dmcblue
  */
-typedef Test<T,U> =
+typedef TestCase<T,U> =
 {
 	var input:T;
 	var expected:U;

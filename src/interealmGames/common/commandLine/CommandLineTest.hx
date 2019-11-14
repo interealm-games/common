@@ -1,6 +1,8 @@
 package interealmGames.common.commandLine;
 
-import haxe.unit.TestCase;
+import utest.Assert;
+import utest.Async;
+import utest.Test;
 import interealmGames.common.commandLine.CommandLine;
 
 typedef GetArgumentsText = {
@@ -10,7 +12,7 @@ typedef GetArgumentsText = {
 /**
  * Tests the CommandLine class
  */
-class CommandLineTest extends TestCase 
+class CommandLineTest extends Test 
 {
 	/**
 	 * Basic tests for getArguments
@@ -33,10 +35,10 @@ class CommandLineTest extends TestCase
 		
 		for (test in tests) {
 			var actual = CommandLine.getArguments(test.input);
-			assertEquals(test.expected.length, actual.length);
+			Assert.equals(test.expected.length, actual.length);
 			for (i in 0...actual.length) {
 				if(i < test.expected.length) {
-					assertEquals(test.expected[i], actual[i]);
+					Assert.equals(test.expected[i], actual[i]);
 				}
 			}
 		}
@@ -49,20 +51,20 @@ class CommandLineTest extends TestCase
 	{
 		var command = "program -r -f filename.txt valve.mp3 -d=\"tests/unit\" -d lib --input 'audio' output.wav";
 		var actual = CommandLine.getOptions(command);
-		assertTrue(actual.hasShortOption('r'));
-		assertEquals(0, actual.getShortValues('r').length);
+		Assert.isTrue(actual.hasShortOption('r'));
+		Assert.equals(0, actual.getShortValues('r').length);
 		
-		assertTrue(actual.hasShortOption('f'));
-		assertEquals(1, actual.getShortValues('f').length);
-		assertEquals('filename.txt', actual.getShortValues('f')[0]);
+		Assert.isTrue(actual.hasShortOption('f'));
+		Assert.equals(1, actual.getShortValues('f').length);
+		Assert.equals('filename.txt', actual.getShortValues('f')[0]);
 		
-		assertTrue(actual.hasShortOption('d'));
-		assertEquals(2, actual.getShortValues('d').length);
-		assertEquals('tests/unit', actual.getShortValues('d')[0]);
-		assertEquals('lib', actual.getShortValues('d')[1]);
+		Assert.isTrue(actual.hasShortOption('d'));
+		Assert.equals(2, actual.getShortValues('d').length);
+		Assert.equals('tests/unit', actual.getShortValues('d')[0]);
+		Assert.equals('lib', actual.getShortValues('d')[1]);
 		
-		assertTrue(actual.hasLongOption('input'));
-		assertEquals(1, actual.getLongValues('input').length);
-		assertEquals('audio', actual.getLongValues('input')[0]);
+		Assert.isTrue(actual.hasLongOption('input'));
+		Assert.equals(1, actual.getLongValues('input').length);
+		Assert.equals('audio', actual.getLongValues('input')[0]);
 	}
 }

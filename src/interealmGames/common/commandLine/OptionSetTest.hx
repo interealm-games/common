@@ -1,6 +1,8 @@
 package interealmGames.common.commandLine;
 
-import haxe.unit.TestCase;
+import utest.Assert;
+import utest.Async;
+import utest.Test;
 import interealmGames.common.commandLine.OptionSet;
 import interealmGames.common.commandLine.OptionType;
 
@@ -13,7 +15,7 @@ typedef FormatFlagTest = {
 /**
  * Tests the OptionSet class
  */
-class OptionSetTest extends TestCase 
+class OptionSetTest extends Test 
 {
 	/**
 	 * Basic tests for unquote
@@ -43,7 +45,7 @@ class OptionSetTest extends TestCase
 		
 		for (test in tests) {
 			var actual = options.formatFlag(test.flag, test.type);
-			assertEquals(test.expected, actual);
+			Assert.equals(test.expected, actual);
 		}
 	}
 }
