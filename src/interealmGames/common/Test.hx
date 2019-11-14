@@ -17,6 +17,7 @@ class Test {
 		runner.addCase(new StringToolsTest());
 		runner.addCase(new ArrayToolsTest());
 		runner.addCase(new CommandLineTest());
+		runner.addCase(new MathExtensionTest());
 		runner.addCase(new OptionSetTest());
 		Report.create(runner);
 		runner.run();
