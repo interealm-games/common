@@ -7,7 +7,7 @@ import StringTools in Parent;
 /**
  * Extends the Standard StringTools
  */
-class StringToolsExtension 
+class StringToolsExtension
 {
 	/**
 	 * Takes a string and returns a string with the first character in upper case
@@ -28,6 +28,16 @@ class StringToolsExtension
 	 */
 	static public function capitalizeAll(cl:Class<Parent>, str:String, delimiter:String = " "):String {
 		return str.split(delimiter).map(Parent.capitalize).join(delimiter);
+	}
+
+	/**
+	 * Counts the number of occurences of a substring
+	 * @param	str The string that contains the substring
+	 * @param	substr The substring to count
+	 * @return The number of occurences of the substring
+	 */
+	static public function count(cl:Class<Parent>, str:String, substr:String):Int {
+		return str.split(substr).length - 1;
 	}
 	
 	/**

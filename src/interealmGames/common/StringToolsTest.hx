@@ -2,13 +2,17 @@ package interealmGames.common;
 
 using interealmGames.common.StringToolsExtension;
 
-
 import utest.Assert;
 import utest.Async;
 import utest.Test;
 import interealmGames.common.test.TestCase;
 
 
+typedef CountTest = {
+	var str: String;
+	var substr: String;
+	var expected: Int;
+};
 typedef FormatTest = {
 	var str: String;
 	var placeholder: String;
@@ -42,8 +46,7 @@ class StringToolsTest extends Test
 	/**
 	 * Basic tests for capitalization
 	 */
-	public function testCapitalize()
-	{
+	public function testCapitalize() {
 		var tests:Array<TestCase<String, String>> = [{
 			input: "a",
 			expected: "A",
@@ -72,8 +75,7 @@ class StringToolsTest extends Test
 	/**
 	 * Basic tests for multiple capitalization
 	 */
-	public function testCapitalizeAll()
-	{
+	public function testCapitalizeAll() {
 		var tests:Array<TestCase<String, String>> = [{
 			input: "a",
 			expected: "A",
@@ -102,9 +104,27 @@ class StringToolsTest extends Test
 			StringTools.capitalizeAll("allbeesarebeeutiful", "b")
 		);
 	}
+
+	public function testCount() {
+		var tests:Array<CountTest> = [{
+			str: "aaa",
+			substr: "a",
+			expected: 3
+		},{
+			str: "12,34, 67",
+			substr: ",",
+			expected: 2,
+		},{
+			str: "12,34, 67",
+			substr: "#",
+			expected: 0,
+		}];
+		for(test in tests) {
+			Assert.equals(test.expected, StringTools.count(test.str, test.substr));
+		}
+	}
 	
-	public function testFormat()
-	{
+	public function testFormat() {
 		var tests:Array<FormatTest> = [{
 			str: "Sara %s mangos",
 			placeholder: "%s",
@@ -135,8 +155,7 @@ class StringToolsTest extends Test
 		}
 	}
 	
-	public function testReplaceOnce()
-	{
+	public function testReplaceOnce() {
 		var tests:Array<ReplacementTest> = [{
 			str: "Sara %s mangos",
 			sub: "%s",
@@ -160,8 +179,7 @@ class StringToolsTest extends Test
 	/**
 	 * Basic tests for splicing strings
 	 */
-	public function testSplice()
-	{
+	public function testSplice() {
 		var tests:Array<SpliceTest> = [{
 			subject: "billy",
 			start: 1,
@@ -184,8 +202,7 @@ class StringToolsTest extends Test
 	/**
 	 * Basic tests for unquote
 	 */
-	public function testUnquote()
-	{
+	public function testUnquote() {
 		var tests:Array<UnquoteTest> = [{
 			input: "billy",
 			quotes: null, //default
