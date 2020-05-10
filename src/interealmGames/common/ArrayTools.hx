@@ -8,6 +8,22 @@ import Map in Dictionary;
 class ArrayTools 
 {
 	/**
+	 * If all values are the same and in the same order
+	 */
+	static public function equals<T>(a:Array<T>, b:Array<T>): Bool {
+		if (a.length != b.length) {
+			return false;
+		}
+
+		var isEqual = true;
+		for (i in 0...a.length) {
+			isEqual = isEqual && a[i] == b[i];
+		}
+
+		return isEqual;
+	}
+
+	/**
 	 * Determines whether there are duplicate values
 	 * Not sure if this is trustworthy.
 	 * Probably slower than using indexOf
@@ -23,6 +39,22 @@ class ArrayTools
 		}
 		
 		return false;
+	}
+
+	/**
+	 * If all values are the same and but the order might be different
+	 */
+	static public function hasSameValues<T>(a:Array<T>, b:Array<T>):Bool {
+		if (a.length != b.length) {
+			return false;
+		}
+
+		var isEqual = true;
+		for (item in a) {
+			isEqual = isEqual && b.indexOf(item) > -1;
+		}
+
+		return isEqual;
 	}
 	
 	/**
