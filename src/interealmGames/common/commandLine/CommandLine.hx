@@ -1,5 +1,6 @@
 package interealmGames.common.commandLine;
 
+using StringTools;
 using interealmGames.common.StringToolsExtension;
 
 import interealmGames.common.commandLine.OptionSet;
@@ -14,9 +15,13 @@ class CommandLine
 	 * @return String The terminal command
 	 */
 	static public function getCommand():String {
-		return Sys.programPath() + ' ' + Sys.args().join(' ');
+		var command:String = Sys.programPath();
+		for(arg in Sys.args()) {
+			command += ' ' + arg.trim();
+		}
+		return command;
 	}
-	
+
 	/**
 	 * Parses all arguments from a terminal command, removing options
 	 * @param	command String The terminal command, optional.  If not provided, it is pulled by the system.
