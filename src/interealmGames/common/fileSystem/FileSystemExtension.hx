@@ -2,8 +2,11 @@ package interealmGames.common.fileSystem;
 
 using interealmGames.common.fileSystem.FileSystemExtension; // self reference
 
+import Sys;
 import sys.FileSystem as Parent;
 import haxe.io.Path;
+import interealmGames.common.errors.NotImplementedOnPlatformError;
+
 /**
  * Additional Utilities for sys.FileSystem
  * https://code.haxe.org/category/other/adding-static-methods-to-existing-classes.html
@@ -37,5 +40,14 @@ class FileSystemExtension
 		}
 		
 		return paths;
+	}
+
+	static public function makeSymlink(cl:Class<Parent>, source:String, symlink:String):Void {
+		if (Sys.systemName() == 'Windows') {
+			throw new NotImplementedOnPlatformError('Windows', 'makeSymlink');
+		}
+
+		// had issue that sh env did not know where ln was
+		Sys.command('/usr/bin/ln', ['-sf', source, symlink]);
 	}
 }
