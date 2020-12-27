@@ -4,6 +4,7 @@ using StringTools;
 using interealmGames.common.StringToolsExtension;
 
 import interealmGames.common.commandLine.OptionSet;
+import interealmGames.common.commandLine.CommandLineValues;
 
 /**
  * Convenience functions to deal with command line usage
@@ -31,6 +32,7 @@ class CommandLine
 		if (command == null) {
 			command = CommandLine.getCommand();
 		}
+
 		var arguments = command.split(' ');
 		
 		var args:Array<String> = [];
@@ -107,5 +109,45 @@ class CommandLine
 		}
 		
 		return options;
+	}
+
+	static public function process(
+		longFlags:Array<String>,
+		shortFlags:Array<String>,
+		?command:String
+	):CommandLineValues {
+		if (command == null) {
+			command = CommandLine.getCommand();
+		}
+
+		var longFlagOptions = [];
+		for(longFlag in longFlags) {
+			if (command.indexOf('--' + longFlag) != -1) {
+				longFlagOptions.push(longFlag);
+				command = StringTools.replaceOnce(command, '--' + longFlag + ' ', '');
+			}
+		}
+
+		var shortFlagOptions = [];
+		for(shortFlag in shortFlags) {
+			if (command.indexOf('-' + shortFlag) != -1) {
+				shortFlagOptions.push(shortFlag);
+				command = StringTools.replaceOnce(command, '-' + shortFlag + ' ', '');
+			}
+		}
+		var commandLineValues: CommandLineValues = {
+			arguments: CommandLine.getArguments(command),
+			options: CommandLine.getOptions(command)
+		}
+
+		for(longFlagOption in longFlagOptions) {
+			commandLineValues.options.addValue(OptionType.LONG, longFlagOption, '');
+		}
+
+		for(shortFlagOption in shortFlagOptions) {
+			commandLineValues.options.addValue(OptionType.SHORT, shortFlagOption, '');
+		}
+
+		return commandLineValues;
 	}
 }

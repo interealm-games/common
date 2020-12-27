@@ -1,5 +1,6 @@
 package interealmGames.common.commandLine;
 
+import haxe.Json as JSON;
 import Map in Dictionary;
 import interealmGames.common.commandLine.OptionType;
 
@@ -201,5 +202,22 @@ class OptionSet
 	 */
 	public function hasShortOption(flag:String):Bool {
 		return this.hasOption(OptionType.SHORT, flag);
+	}
+
+	public function toString():String {
+		var map = {};
+		// in php the data attr of the dictionaries becomes
+		// part of the JSON output, so we need to circumvent
+		// this
+		// for(key => value in this.long) {
+		// 	map[key] = value;
+		// }
+
+		// for(key => value in this.short) {
+		// 	map[key] = value;
+		// }
+
+		// return JSON.stringify(this);
+		return this.long.toString() + this.short.toString();
 	}
 }
