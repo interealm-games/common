@@ -46,7 +46,7 @@ class CommandLine
 						i++;
 					}
 				}
-			} else {
+			} else if(argument != '') {
 				args.push(argument);
 			}
 			
