@@ -32,8 +32,7 @@ class CommandLine
 		if (command == null) {
 			command = CommandLine.getCommand();
 		}
-
-		var arguments = command.split(' ');
+		var arguments = CommandLine.split(command);
 		
 		var args:Array<String> = [];
 		
@@ -71,7 +70,7 @@ class CommandLine
 		if (command == null) {
 			command = CommandLine.getCommand();
 		}
-		var arguments = command.split(' ');
+		var arguments = CommandLine.split(command);
 		var options:OptionSet = new OptionSet();
 		
 		var i = 0; //loop vars cannot be modified, ie no for loop
@@ -111,43 +110,29 @@ class CommandLine
 		return options;
 	}
 
-	static public function process(
-		longFlags:Array<String>,
-		shortFlags:Array<String>,
-		?command:String
-	):CommandLineValues {
-		if (command == null) {
-			command = CommandLine.getCommand();
-		}
+	static public function split(command:String):Array<String> {
+		var parts = command.split(' ');
+		var arguments:Array<String> = [];
+		var i = 0; //loop vars cannot be modified, ie no for loop
+		while (i < parts.length) {
+			var argument = parts[i];
 
-		var longFlagOptions = [];
-		for(longFlag in longFlags) {
-			if (command.indexOf('--' + longFlag) != -1) {
-				longFlagOptions.push(longFlag);
-				command = StringTools.replaceOnce(command, '--' + longFlag + ' ', '');
+			if (['"',"'"].contains(argument.charAt(0))) {
+				var quote = argument.charAt(0);
+				while(argument.charAt(argument.length - 1) != quote) {
+					i++;
+					if(i == parts.length) {
+						throw 'Missing closing quote $quote';
+					}
+					argument += " " + parts[i];
+				}
+				argument = argument.substr(1, argument.length - 2);
 			}
+
+			arguments.push(argument);
+			i++;
 		}
 
-		var shortFlagOptions = [];
-		for(shortFlag in shortFlags) {
-			if (command.indexOf('-' + shortFlag) != -1) {
-				shortFlagOptions.push(shortFlag);
-				command = StringTools.replaceOnce(command, '-' + shortFlag + ' ', '');
-			}
-		}
-		var commandLineValues: CommandLineValues = {
-			arguments: CommandLine.getArguments(command),
-			options: CommandLine.getOptions(command)
-		}
-
-		for(longFlagOption in longFlagOptions) {
-			commandLineValues.options.addValue(OptionType.LONG, longFlagOption, '');
-		}
-
-		for(shortFlagOption in shortFlagOptions) {
-			commandLineValues.options.addValue(OptionType.SHORT, shortFlagOption, '');
-		}
-
-		return commandLineValues;
+		return arguments;
 	}
 }

@@ -31,6 +31,9 @@ class CommandLineTest extends Test
 		},{
 			input: "billy -h 'filious' bobby",
 			expected: ["billy","bobby"]
+		},{
+			input: "billy -h 'filious' 'bobby filious'",
+			expected: ["billy","bobby filious"]
 		}];
 		
 		for (test in tests) {
@@ -41,6 +44,16 @@ class CommandLineTest extends Test
 					Assert.equals(test.expected[i], actual[i]);
 				}
 			}
+		}
+
+		var failTests:Array<String> = [
+			"billy -h 'filious' 'bobby filious"
+		];
+
+		for (test in failTests) {
+			Assert.raises(function() {
+				CommandLine.getArguments(test);
+			}, 'Missing closing quote \'');
 		}
 	}
 	
