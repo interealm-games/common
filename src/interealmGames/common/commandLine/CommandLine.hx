@@ -17,10 +17,24 @@ class CommandLine
 	 */
 	static public function getCommand():String {
 		var command:String = Sys.programPath();
+
 		for(arg in Sys.args()) {
 			command += ' ' + arg.trim();
 		}
 		return command;
+	}
+
+	/**
+	 * Gets the terminal command with the executable as a fullpath
+	 * @return String The terminal command
+	 */
+	 static public function getArgs():Array<String> {
+		var args: Array<String> = [Sys.programPath()];
+
+		for(arg in Sys.args()) {
+			args.push(arg.trim());
+		}
+		return args;
 	}
 
 	/**
@@ -29,10 +43,12 @@ class CommandLine
 	 * @return Array<String> All arguments in order
 	 */
 	static public function getArguments(?command:String):Array<String> {
-		if (command == null) {
-			command = CommandLine.getCommand();
+		var arguments = [];
+		if (command != null) {
+			arguments = CommandLine.split(command);
+		} else {
+			arguments = CommandLine.getArgs();
 		}
-		var arguments = CommandLine.split(command);
 		
 		var args:Array<String> = [];
 		
@@ -67,10 +83,12 @@ class CommandLine
 		 *  - But not singles
 		 *  - Equals (=) are just text
 		 */
-		if (command == null) {
-			command = CommandLine.getCommand();
-		}
-		var arguments = CommandLine.split(command);
+		var arguments = [];
+		if (command != null) {
+			arguments = CommandLine.split(command);
+		} else {
+			arguments = CommandLine.getArgs();
+		 }
 		var options:OptionSet = new OptionSet();
 		
 		var i = 0; //loop vars cannot be modified, ie no for loop
