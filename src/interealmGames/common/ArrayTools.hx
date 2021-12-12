@@ -24,6 +24,21 @@ class ArrayTools
 	}
 
 	/**
+	 * Gathers all elements matching a functional criteria
+	 */
+	 static public function filter<T>(items:Array<T>, filterMethod:T->Bool):Array<T> {
+		var subset:Array<T> = [];
+		
+		for (item in items) {
+			if (filterMethod(item)) {
+				subset.push(item);
+			}
+		}
+		
+		return subset;
+	}
+
+	/**
 	 * Determines whether there are duplicate values
 	 * Not sure if this is trustworthy.
 	 * Probably slower than using indexOf
@@ -76,6 +91,19 @@ class ArrayTools
 		}
 		
 		return true;
+	}
+
+	/**
+	 * Returns the first element matching a functional criteria
+	 */
+	 static public function select<T>(items:Array<T>, filterMethod:T->Bool):T {
+		for (item in items) {
+			if (filterMethod(item)) {
+				return item;
+			}
+		}
+		
+		return null;
 	}
 	
 	
