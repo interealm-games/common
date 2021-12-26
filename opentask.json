@@ -23,6 +23,15 @@
 		}],
 		"command": "opentask",
 		"arguments": ["rungroup", "init:haxe"]
+	},{
+		"name": "init:haxe:crypto",
+		"description": "Installs haxe-crypto",
+		"groups": [{
+			"name": "init:haxe",
+			"rank": 1
+		}],
+		"command": "haxelib",
+		"arguments": ["install", "haxe-crypto"]
 	},
 	
 	{
@@ -43,6 +52,7 @@
 		"command": "haxe",
 		"arguments": [
 			"-lib", "utest",
+			"-lib", "haxe-crypto",
 			"-cp", "src",
 			"--interp",
 			"--main", "interealmGames.common.Test"

@@ -8,6 +8,7 @@ import interealmGames.common.commandLine.OptionSetTest;
 import interealmGames.common.dictionary.DictionaryToolsTest;
 import interealmGames.common.math.MathExtensionTest;
 import interealmGames.common.StringToolsTest;
+import interealmGames.common.UuidTest;
 
 /**
  * All tests for this package
@@ -21,6 +22,7 @@ class Test {
 		runner.addCase(new DictionaryToolsTest());
 		runner.addCase(new MathExtensionTest());
 		runner.addCase(new OptionSetTest());
+		runner.addCase(new UuidTest());
 		Report.create(runner);
 		runner.run();
 	}
