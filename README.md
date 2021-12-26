@@ -9,7 +9,7 @@ This repository is free for use under the [MIT License](https://github.com/inter
 
 ### Dependencies
 
-The interealmGames.common.Uuid class relies on the [haxe-crypto](https://github.com/soywiz/haxe-crypto) library which can be installed with 
+The interealmGames.common.uuid.Uuid class relies on the [haxe-crypto](https://github.com/soywiz/haxe-crypto) library which can be installed with 
 	
 ```
 haxelib install haxe-crypto

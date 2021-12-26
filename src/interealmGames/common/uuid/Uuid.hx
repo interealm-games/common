@@ -1,4 +1,4 @@
-package interealmGames.common;
+package interealmGames.common.uuid;
 
 import com.hurlant.crypto.prng.Random;
 import com.hurlant.crypto.extra.UUID;
@@ -14,7 +14,7 @@ class Uuid
 		return Uuid.REGEX_V4.match(s);
 	}
 
-	public static function v4():String {
+	public static function v4():UuidV4 {
 		var rand = new Random();
 		var uuid = UUID.generateRandom(rand);
 		return uuid.toString();

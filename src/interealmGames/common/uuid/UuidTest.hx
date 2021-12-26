@@ -1,4 +1,4 @@
-package interealmGames.common;
+package interealmGames.common.uuid;
 
 import utest.Assert;
 import utest.Async;

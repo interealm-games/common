@@ -8,7 +8,7 @@ import interealmGames.common.commandLine.OptionSetTest;
 import interealmGames.common.dictionary.DictionaryToolsTest;
 import interealmGames.common.math.MathExtensionTest;
 import interealmGames.common.StringToolsTest;
-import interealmGames.common.UuidTest;
+import interealmGames.common.uuid.UuidTest;
 
 /**
  * All tests for this package
