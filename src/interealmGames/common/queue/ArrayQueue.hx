@@ -1,6 +1,8 @@
 package interealmGames.common.queue;
 
-class ArrayQueue<T> {
+import interealmGames.common.queue.Queue;
+
+class ArrayQueue<T> implements Queue<T> {
 	private var queue:Array<T> = [];
 	public function new() {}
 
