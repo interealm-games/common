@@ -6,6 +6,7 @@ import utest.Assert;
 import utest.Async;
 import utest.Test;
 import interealmGames.common.test.TestCase;
+import interealmGames.common.ArrayTools;
 
 
 typedef CountTest = {
@@ -18,6 +19,11 @@ typedef FormatTest = {
 	var placeholder: String;
 	var replacements: Array<String>;
 	var expected: String;
+};
+typedef IndexOfAllTest =  {
+	var input: String;
+	var search: String;
+	var expected: Array<Int>;
 };
 typedef ReplacementTest = {
 	var str: String;
@@ -152,6 +158,29 @@ class StringToolsTest extends Test
 				test.expected,
 				StringTools.format(test.str, test.replacements, test.placeholder)
 			);
+		}
+	}
+
+	public function testIndexOfAll() {
+		var tests:Array<IndexOfAllTest> = [{
+			input: "ababa",
+			search: "a",
+			expected: [0, 2, 4]
+		}, {
+			input: "ababa",
+			search: "c",
+			expected: []
+		}, {
+			input: "aaaaa",
+			search: "aa",
+			expected: [0, 1, 2, 3]
+		}];
+
+		for(test in tests) {
+			Assert.isTrue(ArrayTools.equals(
+				test.expected,
+				StringTools.indexOfAll(test.input, test.search)
+			));
 		}
 	}
 	

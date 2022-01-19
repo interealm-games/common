@@ -55,6 +55,22 @@ class StringToolsExtension
 		
 		return newString;
 	}
+
+	/**
+	 * Gets all the indices of a substring
+	 * @param	str
+	 * @param	search
+	 * @return
+	 */
+	static public function indexOfAll(cl:Class<Parent>, str:String, search:String):Array<Int> {
+		var results = [];
+		var lastIndex:Int = 0;
+		while((lastIndex = str.indexOf(search, lastIndex)) > -1) {
+			results.push(lastIndex);
+			lastIndex++;
+		}
+		return results;
+	}
 	
 	/**
 	 * Replaces a single occurence (first from left) of a substring with another.
