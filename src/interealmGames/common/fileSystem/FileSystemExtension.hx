@@ -23,8 +23,6 @@ class FileSystemExtension
 	static public function recursiveSearch(cl:Class<Parent>, directory:String, extension:String):Array<String> {
 		var paths:Array<String> = [];
 		if (sys.FileSystem.exists(directory)) {
-			//trace("directory found: " + directory);
-			
 			for (file in sys.FileSystem.readDirectory(directory)) {
 				var path = haxe.io.Path.join([directory, file]);
 				if (!sys.FileSystem.isDirectory(path)) {
