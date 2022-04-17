@@ -19,7 +19,7 @@ class HttpJs extends haxe.http.HttpJs
 			method = post ? "POST" : "GET";
 		}
 		
-		responseData = null;
+		var responseData = null;
 		var r = req = js.Browser.createXMLHttpRequest();
 		var onreadystatechange = function(_) {
 			if(r.readyState != 4)
